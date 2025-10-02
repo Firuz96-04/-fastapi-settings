@@ -2,7 +2,7 @@ from fastapi import FastAPI, Depends
 from pydantic import BaseModel
 from views.calc import router as calc_router
 import uvicorn
-
+from config import settings
 
 app = FastAPI()
 
@@ -23,6 +23,5 @@ def hi(name: str = None):
     return {"name": name}
 
 
-
 if __name__ == "__main__":
-    uvicorn.run("main:app", port=5001, reload=True)
+    uvicorn.run("main:app", port=settings.port, reload=settings.reload, host=settings.host)
